@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, lazy} from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// components imports
+const Home = lazy(() => import("./pages/home/Home"));
+const Aboute = lazy(() => import("./pages/aboute/Aboute"));
+const Contact = lazy(() => import("./pages/contact/Contact"));
+const WebAppTemplate = lazy(() => import("./components/webAppTemplate/WebAppTemplate"));
+
+
+const App = () => {
+  return ( 
+    <>
+    <Routes> 
+      <Route path="/" element={<WebAppTemplate/>}>
+        {/* HOME */}
+        <Route index element={<Home/>}/>
+        <Route path="/o-nas" element={<Aboute/>}/>
+        <Route path="/kontakt" element={<Contact/>}/>
+      </Route>
+    </Routes>
+    </>
+   );
 }
-
+ 
 export default App;
